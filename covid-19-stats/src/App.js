@@ -15,8 +15,34 @@ class App extends React.Component {
     super(props);
     this.state = {
       country_names: [],
-      current_country: "China"
+      headerTitle: 'China',
+      data: {}
     }
+    this.changeCountry = this.changeCountry.bind(this)
+  }
+  changeCountry(item) {
+    this.setState({
+      headerTitle: item
+    })
+    this.fetchConfirmedCases()
+    console.log("current headerTitle: ", this.state.headerTitle)
+  }
+  fetchConfirmedCases() {
+    const country = this.state.headerTitle
+    const url = `https://api.covid19api.com/total/country/${country}/status/confirmed`
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log("Dta:", data)
+        data.forEach((daily_data) => {
+          const { Cases, Date } = daily_data
+          this.setState((prevState) => ({
+            // confirmed: [...prevState.confirmed, {y: Cases, x: Date}],
+            data: {...prevState.data, [Date]:Cases}
+          }))
+        })
+      }, (err) => console.log("err_url: ", url))
+    // console.log("data: ", this.state.data)
   }
   componentDidMount() {
     const url = "https://api.covid19api.com/summary"
@@ -35,32 +61,35 @@ class App extends React.Component {
       }, (err) => {
         console.log("err: ", err)
       })
-  }
-  changeCountry(item) {
-    console.log(item)
+    this.fetchConfirmedCases()
   }
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <p>Covid 19 Stats HH</p>
-          <SearchBar title="Select Countries" list={this.state.country_names}
+          <SearchBar list={this.state.country_names}
+            headerTitle={this.state.headerTitle}
             changeCountry={this.changeCountry}/>
         </header>
         <div className="App-body">
-          <Graph country={this.state.current_country}/>
+          <div className="graph">
+            {/* <LineChart data={{"2011235-13": 2, "2017-05-14": 5}} /> */}
+            <LineChart data={this.state.data} />
+          </div>
         </div>
       </div>
     );
   }
 }
 
+// props: list, headerTitle, changeCountry
 class SearchBar extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       listOpen: false,
-      headerTitle: this.props.title
+      headerTitle: this.props.headerTitle
     }
   }
   handleClickOutside(){
@@ -81,10 +110,11 @@ class SearchBar extends React.Component {
     })
   }
   render() {
-    const{list} = this.props
-    const{listOpen, headerTitle} = this.state
+    const{list, headerTitle} = this.props
+    const{listOpen} = this.state
     
     return (
+    <div>
       <div className="dd-wrapper">
         <div className="dd-header" onClick={() => this.toggleList()}>
               <div className="dd-header-title">{headerTitle}</div>
@@ -96,6 +126,7 @@ class SearchBar extends React.Component {
               ))}
             </ul>}
       </div>
+    </div>
     )
   }
 }
@@ -110,41 +141,5 @@ class SearchBar extends React.Component {
 // Cases: 1
 // Status: "confirmed"
 
-// props: country
-class Graph extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      confirmed: [],
-      data: {}
-    }
-  }
-  componentDidMount() {
-    const country = this.props.country
-    const url = `https://api.covid19api.com/total/country/${country}/status/confirmed`
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        // console.log("dta:", data)
-        data.forEach((daily_data) => {
-          const { Cases, Date } = daily_data
-          this.setState((prevState) => ({
-            confirmed: [...prevState.confirmed, {y: Cases, x: Date}],
-            data: {...prevState.data, [Date]:Cases}
-          }))
-        })
-      }, (err) => console.log("err_url: ", url))
-    // console.log("data: ", this.state.data)
-  }
-  render() {
-    return (
-      <div className="graph">
-        This is graph
-        {/* <LineChart data={{"2011235-13": 2, "2017-05-14": 5}} /> */}
-        <LineChart data={this.state.data} />
-      </div>
-    )  
-  }
-}
 
 export default App;
