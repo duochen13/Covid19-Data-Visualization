@@ -24,16 +24,17 @@ class App extends React.Component {
     this.setState({
       headerTitle: item
     })
-    this.fetchConfirmedCases()
+    this.fetchConfirmedCases(item)
     console.log("current headerTitle: ", this.state.headerTitle)
   }
-  fetchConfirmedCases() {
-    const country = this.state.headerTitle
+  fetchConfirmedCases(country) {
+    // const country = this.state.headerTitle
     const url = `https://api.covid19api.com/total/country/${country}/status/confirmed`
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
         // console.log("Dta:", data)
+        // err handling here
         data.forEach((daily_data) => {
           const { Cases, Date } = daily_data
           this.setState((prevState) => ({
@@ -61,7 +62,7 @@ class App extends React.Component {
       }, (err) => {
         console.log("err: ", err)
       })
-    this.fetchConfirmedCases()
+    this.fetchConfirmedCases(this.state.headerTitle)
   }
   render() {
     return (
@@ -89,7 +90,7 @@ class SearchBar extends React.Component {
     super(props)
     this.state = {
       listOpen: false,
-      headerTitle: this.props.headerTitle
+      // headerTitle: this.props.headerTitle
     }
   }
   handleClickOutside(){
@@ -105,7 +106,7 @@ class SearchBar extends React.Component {
   changeCountry(item) {
     this.props.changeCountry(item)
     this.setState({
-      headerTitle: item,
+      // headerTitle: item,
       listOpen: false
     })
   }
