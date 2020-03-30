@@ -2,17 +2,20 @@ import React from 'react';
 import logo from './logo.svg';
 import Select from "react-dropdown-select";
 import './App.css';
-import CanvasJSReact from './canvasjs.react';
+// import CanvasJSReact from './canvasjs.react';
 // var CanvasJSReact = require('./canvasjs.react');
-var CanvasJS = CanvasJSReact.CanvasJS;
-var CanvasJSChart = CanvasJSReact.CanvasJSChart;
-var FontAwesome = require('react-fontawesome')
+// var CanvasJS = CanvasJSReact.CanvasJS;
+// var CanvasJSChart = CanvasJSReact.CanvasJSChart;
+// var FontAwesome = require('react-fontawesome')
+import { LineChart, PieChart } from 'react-chartkick'
+import 'chart.js'
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      country_names: []
+      country_names: [],
+      current_country: "China"
     }
   }
   componentDidMount() {
@@ -33,16 +36,20 @@ class App extends React.Component {
         console.log("err: ", err)
       })
   }
+  changeCountry(item) {
+    console.log(item)
+  }
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <p>Covid 19 Stats HH</p>
-          <SearchBar title="Select Countries" list={this.state.country_names}/>
+          <SearchBar title="Select Countries" list={this.state.country_names}
+            changeCountry={this.changeCountry}/>
         </header>
-        <body className="App-body">
-          <Graph />
-        </body>
+        <div className="App-body">
+          <Graph country={this.state.current_country}/>
+        </div>
       </div>
     );
   }
@@ -66,7 +73,13 @@ class SearchBar extends React.Component {
       listOpen: !prevState.listOpen
     }))
   }
-
+  changeCountry(item) {
+    this.props.changeCountry(item)
+    this.setState({
+      headerTitle: item,
+      listOpen: false
+    })
+  }
   render() {
     const{list} = this.props
     const{listOpen, headerTitle} = this.state
@@ -79,78 +92,56 @@ class SearchBar extends React.Component {
         {listOpen && <ul className="dd-list">
             {list.map((item, index) => (
               <li className="dd-list-item" key={index} 
-                onClick={() => {
-                  this.setState({
-                    headerTitle: item,
-                    listOpen: false
-                  })
-                }}>{item}</li>
+                onClick={() => this.changeCountry(item)}>{item}</li>
               ))}
             </ul>}
       </div>
- 
     )
   }
 }
 
+
+
+// Country: "US"
+// Province: ""
+// Lat: 0
+// Lon: 0
+// Date: "2020-01-22T00:00:00Z"
+// Cases: 1
+// Status: "confirmed"
+
+// props: country
 class Graph extends React.Component {
-  render() {
-    const options = {
-      animationEnabled: true,	
-      title:{
-        text: "Number of New Customers"
-      },
-      axisY : {
-        title: "Number of Customers",
-        includeZero: false
-      },
-      toolTip: {
-        shared: true
-      },
-      data: [{
-        type: "spline",
-        name: "2016",
-        showInLegend: true,
-        dataPoints: [
-          { y: 155, label: "Jan" },
-          { y: 150, label: "Feb" },
-          { y: 152, label: "Mar" },
-          { y: 148, label: "Apr" },
-          { y: 142, label: "May" },
-          { y: 150, label: "Jun" },
-          { y: 146, label: "Jul" },
-          { y: 149, label: "Aug" },
-          { y: 153, label: "Sept" },
-          { y: 158, label: "Oct" },
-          { y: 154, label: "Nov" },
-          { y: 150, label: "Dec" }
-        ]
-      },{
-        type: "spline",
-        name: "2017",
-        showInLegend: true,
-        dataPoints: [
-          { y: 172, label: "Jan" },
-          { y: 173, label: "Feb" },
-          { y: 175, label: "Mar" },
-          { y: 172, label: "Apr" },
-          { y: 162, label: "May" },
-          { y: 165, label: "Jun" },
-          { y: 172, label: "Jul" },
-          { y: 168, label: "Aug" },
-          { y: 175, label: "Sept" },
-          { y: 170, label: "Oct" },
-          { y: 165, label: "Nov" },
-          { y: 169, label: "Dec" }
-        ]
-      }]
+  constructor(props) {
+    super(props)
+    this.state = {
+      confirmed: [],
+      data: {}
     }
+  }
+  componentDidMount() {
+    const country = this.props.country
+    const url = `https://api.covid19api.com/total/country/${country}/status/confirmed`
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log("dta:", data)
+        data.forEach((daily_data) => {
+          const { Cases, Date } = daily_data
+          this.setState((prevState) => ({
+            confirmed: [...prevState.confirmed, {y: Cases, x: Date}],
+            data: {...prevState.data, [Date]:Cases}
+          }))
+        })
+      }, (err) => console.log("err_url: ", url))
+    // console.log("data: ", this.state.data)
+  }
+  render() {
     return (
       <div className="graph">
         This is graph
-        <CanvasJSChart options = {options} 
-				  /* onRef={ref => this.chart = ref} */
-			  />
+        {/* <LineChart data={{"2011235-13": 2, "2017-05-14": 5}} /> */}
+        <LineChart data={this.state.data} />
       </div>
     )  
   }

@@ -166,5 +166,7 @@ p {
 }
 .graph {
   position: absolute;
-  top:50px;
+  top: 10px;
+  width: -webkit-fill-available;
+  height: 180px;
 }
