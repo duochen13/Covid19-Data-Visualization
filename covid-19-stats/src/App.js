@@ -9,6 +9,7 @@ import './App.css';
 // var FontAwesome = require('react-fontawesome')
 import { LineChart, PieChart } from 'react-chartkick'
 import 'chart.js'
+import { obj } from 'pumpify';
 
 class App extends React.Component {
   constructor(props) {
@@ -33,8 +34,12 @@ class App extends React.Component {
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        // console.log("Dta:", data)
         // err handling here
+        // console.log("data: ", data)
+        if (Object.keys(data).length === 0) {
+          alert("you click so fast, try refresh the page")
+          return
+        }
         data.forEach((daily_data) => {
           const { Cases, Date } = daily_data
           this.setState((prevState) => ({
@@ -68,7 +73,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
-          <p>Covid 19 Stats HH</p>
+          <p><strong>{this.state.headerTitle}</strong> Covid-19 Confirmed Cases ~ Date</p>
           <SearchBar list={this.state.country_names}
             headerTitle={this.state.headerTitle}
             changeCountry={this.changeCountry}/>
