@@ -27,7 +27,7 @@
 .App-searchbar{
   background-color: #282c34;
   /* opacity: 0.9; */
-  margin-top: -320px;
+  margin-top: -300px;
   min-height: 130vh;
   display: flex;
   flex-direction: column;
