@@ -97,7 +97,7 @@ class App extends React.Component {
             countryList: [],
             dataList: []
           })}>Reset</button>
-          <CountryList countryList={this.state.countryList} />
+          {/* <CountryList countryList={this.state.countryList} /> */}
         </div>
         {/* <div className="App-body"> */}
          
@@ -159,19 +159,19 @@ class SearchBar extends React.Component {
 }
 
 // props: this.props.current_countries
-class CountryList extends React.Component {
-  render() {
-    const countryList = this.props.countryList.map((country, index) =>
-      <li key={index}>{country}</li>
-    )
-    return(
-      <div>
-        {/* {countryList} */}
-        {/* This is country list */}
-      </div>
-    )
-  }
-}
+// class CountryList extends React.Component {
+//   render() {
+//     const countryList = this.props.countryList.map((country, index) =>
+//       <li key={index}>{country}</li>
+//     )
+//     return(
+//       <div>
+//         {/* {countryList} */}
+//         {/* This is country list */}
+//       </div>
+//     )
+//   }
+// }
 
 // Country: "US"
 // Province: ""
