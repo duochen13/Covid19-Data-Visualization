@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -71,3 +72,7 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 # covid19-realtime-stats
 Covid-19 Real-time Stats Update
 >>>>>>> 62db72afcc7e62d0c92d926c1da5d7b05d67edad
+=======
+# covid19-data-visualization
+Covid19 Data Visualization
+>>>>>>> fd875e80170243dcd51e4d1c35f552e2f4a53952
