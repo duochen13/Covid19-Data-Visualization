@@ -1,15 +1,15 @@
 import React from 'react';
-import logo from './logo.svg';
-import Select from "react-dropdown-select";
+//import logo from './logo.svg';
+//import Select from "react-dropdown-select";
 import './App.css';
 // import CanvasJSReact from './canvasjs.react';
 // var CanvasJSReact = require('./canvasjs.react');
 // var CanvasJS = CanvasJSReact.CanvasJS;
 // var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 // var FontAwesome = require('react-fontawesome')
-import { LineChart, PieChart } from 'react-chartkick'
+import { LineChart } from 'react-chartkick'
 import 'chart.js'
-import { obj } from 'pumpify';
+//import { obj } from 'pumpify';
 
 class App extends React.Component {
   constructor(props) {
