@@ -169,4 +169,6 @@ p {
   top: 10px;
   width: -webkit-fill-available;
   height: 180px;
+  /* left: 100px;
+  width: 80% */
 }
