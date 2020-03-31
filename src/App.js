@@ -17,10 +17,10 @@ class App extends React.Component {
     super(props);
     this.state = {
       country_names: [],
-      headerTitle: 'China',
-      data: {},
-      countryList: ['China'],
-      dataList: []
+      headerTitle: 'China', // 
+      // data: {},
+      countryList: ['China'], //
+      dataList: [] //
     }
     this.changeCountry = this.changeCountry.bind(this)
   }
@@ -46,15 +46,10 @@ class App extends React.Component {
         // err handling here
         if (Object.keys(data).length === 0) {
           alert("you click so fast, try refresh the page")
+          window.location.reload(false);
           return
         }
-        data.forEach((daily_data) => {
-          const { Cases, Date } = daily_data
-          this.setState((prevState) => ({
-            // confirmed: [...prevState.confirmed, {y: Cases, x: Date}],
-            data: {...prevState.data, [Date]:Cases}
-          }))
-        })
+
         let newCountryData = {}
         data.forEach((daily_data) => {
           const { Cases, Date } = daily_data
@@ -97,6 +92,11 @@ class App extends React.Component {
           <SearchBar list={this.state.country_names}
             headerTitle={this.state.headerTitle}
             changeCountry={this.changeCountry}/>
+          <button onClick={() => this.setState({
+            headerTitle: "Click me to select a country",
+            countryList: [],
+            dataList: []
+          })}>Reset</button>
           <CountryList countryList={this.state.countryList} />
         </div>
         {/* <div className="App-body"> */}

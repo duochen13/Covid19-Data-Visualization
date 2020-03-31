@@ -140,11 +140,11 @@ p {
 }
 .dd-list-item.selected {
   color: #fff;
-  background-color: #ffcc01;
+  background-color: green
 }
 .dd-list-item:hover {
   color: #fff;
-  background-color: #ffcc01;
+  background-color: green
 }
 .dd-wrapper-single {
   -webkit-user-select: none;

@@ -37,6 +37,22 @@
   color: white;
 }
 
+.App-searchbar :hover{
+  color: greenyellow;
+}
+
+.App-searchbar button {
+  position: relative;
+  top: 20px;
+  height: 40px;
+  color: white;
+  background-color: #282c34;
+  border-radius: 5px;
+}
+.App-searchbar button:hover {
+  color: #282c34;
+  background-color: white;
+}
 /* .App-searchbar p {
   position:relative;
   bottom: 200px;
