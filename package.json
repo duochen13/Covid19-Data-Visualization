@@ -18,8 +18,8 @@
     "react-vis": "^1.11.7"
   },
   "scripts": {
-    "start": "npm start",
-    "heroku-postbuild": "cd react-ui/ && npm install && npm run build"
+    "start": "node server.js",
+    "heroku-postbuild": "npm install && npm run build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -35,5 +35,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "proxy": "http://localhost:3000"
 }
