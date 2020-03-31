@@ -3,7 +3,7 @@
 # Covid19 Data Visualization Web App
 A React app that displays the latest real-time covid-19 confirmed cases data among different countries.
 
-![GitHub Logo](./demo.png)
+![GitHub Logo](./demo_final.png)
 
 ## Available Scripts
 
