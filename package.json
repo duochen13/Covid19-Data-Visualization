@@ -2,7 +2,6 @@
   "name": "covid-19-stats",
   "version": "0.1.0",
   "private": true,
-  "main": "server.js",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -20,11 +19,10 @@
     "react-vis": "^1.11.7"
   },
   "scripts": {
-    "start": "node server.js",
-    "build": "npm run build",
-    "install": "npm install",
-    "server": "nodemon server.js",
-    "heroku-postbuild": "npm run build"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"

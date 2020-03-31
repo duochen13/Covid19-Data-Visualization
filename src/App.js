@@ -11,13 +11,16 @@ import { LineChart } from 'react-chartkick'
 import 'chart.js'
 //import { obj } from 'pumpify';
 
+
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       country_names: [],
       headerTitle: 'China',
-      data: {}
+      data: {},
+      countryList: ['China'],
+      dataList: []
     }
     this.changeCountry = this.changeCountry.bind(this)
   }
@@ -27,6 +30,12 @@ class App extends React.Component {
     })
     this.fetchConfirmedCases(item)
     console.log("current headerTitle: ", this.state.headerTitle)
+    
+    if (!this.state.countryList.includes(item)) {
+      this.setState((prevState) => ({
+        countryList: [...prevState.countryList, item]
+      }))
+    }
   }
   fetchConfirmedCases(country) {
     // const country = this.state.headerTitle
@@ -35,7 +44,6 @@ class App extends React.Component {
       .then((res) => res.json())
       .then((data) => {
         // err handling here
-        // console.log("data: ", data)
         if (Object.keys(data).length === 0) {
           alert("you click so fast, try refresh the page")
           return
@@ -47,6 +55,17 @@ class App extends React.Component {
             data: {...prevState.data, [Date]:Cases}
           }))
         })
+        let newCountryData = {}
+        data.forEach((daily_data) => {
+          const { Cases, Date } = daily_data
+          newCountryData[Date] = Cases
+        })
+        let finalCountryData = {"name":country}
+        finalCountryData["data"] = newCountryData
+        this.setState((prevState) => ({
+          dataList: [...prevState.dataList, finalCountryData]
+        }))
+        console.log("get dataList: ", this.state.dataList)
       }, (err) => console.log("err_url: ", url))
     // console.log("data: ", this.state.data)
   }
@@ -55,35 +74,37 @@ class App extends React.Component {
     fetch(url)
       .then(res => res.json())
       .then((data) => {
-        // console.log("data: ", data.Countries[1])
         // get all countries
         data.Countries.forEach((country) => {
           this.setState((prevState) => ({
             country_names: [...prevState.country_names, country.Country]
           }))
-          // this.state.country_names.push(country.Country)
         })
-        // console.log("country_names: ", this.state.country_names)
       }, (err) => {
         console.log("err: ", err)
       })
     this.fetchConfirmedCases(this.state.headerTitle)
   }
   render() {
+    
     return (
       <div className="App">
-        <header className="App-header">
+        <div className="App-graph">
+          <LineChart data={this.state.dataList} />
+        </div>
+        <div className="App-searchbar">
           <p><strong>{this.state.headerTitle}</strong> Covid-19 Confirmed Cases ~ Date</p>
           <SearchBar list={this.state.country_names}
             headerTitle={this.state.headerTitle}
             changeCountry={this.changeCountry}/>
-        </header>
-        <div className="App-body">
-          <div className="graph">
-            {/* <LineChart data={{"2011235-13": 2, "2017-05-14": 5}} /> */}
-            <LineChart data={this.state.data} />
-          </div>
+          <CountryList countryList={this.state.countryList} />
         </div>
+        {/* <div className="App-body"> */}
+         
+            {/* <LineChart data={{"2011235-13": 2, "2017-05-14": 5}} /> */}
+            {/* <LineChart data={this.state.data} />
+          */}
+        {/* </div> */}
       </div>
     );
   }
@@ -137,7 +158,20 @@ class SearchBar extends React.Component {
   }
 }
 
-
+// props: this.props.current_countries
+class CountryList extends React.Component {
+  render() {
+    const countryList = this.props.countryList.map((country, index) =>
+      <li key={index}>{country}</li>
+    )
+    return(
+      <div>
+        {/* {countryList} */}
+        {/* This is country list */}
+      </div>
+    )
+  }
+}
 
 // Country: "US"
 // Province: ""
