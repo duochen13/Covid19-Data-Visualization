@@ -64,7 +64,7 @@ class App extends React.Component {
         this.setState((prevState) => ({
           dataList: [...prevState.dataList, finalCountryData]
         }))
-        console.log("get dataList: ", this.state.dataList)
+        // console.log("get dataList: ", this.state.dataList)
       }, (err) => console.log("err_url: ", url))
     // console.log("data: ", this.state.data)
   }
