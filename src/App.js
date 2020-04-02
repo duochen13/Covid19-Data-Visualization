@@ -1,4 +1,5 @@
-import React, { createRef } from 'react';
+/* eslint-disable no-undef */
+import React from 'react';
 //import logo from './logo.svg';
 //import Select from "react-dropdown-select";
 import './App.css';
@@ -9,10 +10,10 @@ import './App.css';
 // var FontAwesome = require('react-fontawesome')
 import { LineChart } from 'react-chartkick'
 import 'chart.js'
-import MyMapComponent from './Map'
+// import MyMapComponent from './Map'
 // import { google } from 'google-maps';
 
-const google=window.google
+// const google=window.google
 
 
 class App extends React.Component {
@@ -107,7 +108,7 @@ class App extends React.Component {
             {/* <LineChart data={{"2011235-13": 2, "2017-05-14": 5}} /> */}
             {/* <LineChart data={this.state.data} />
           */}
-            <MyMapComponent />
+            {/* <MyMapComponent /> */}
 
         </div>
       </div>
