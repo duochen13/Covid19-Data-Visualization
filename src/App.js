@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef } from 'react';
 //import logo from './logo.svg';
 //import Select from "react-dropdown-select";
 import './App.css';
@@ -9,7 +9,10 @@ import './App.css';
 // var FontAwesome = require('react-fontawesome')
 import { LineChart } from 'react-chartkick'
 import 'chart.js'
-//import { obj } from 'pumpify';
+import MyMapComponent from './Map'
+// import { google } from 'google-maps';
+
+const google=window.google
 
 
 class App extends React.Component {
@@ -99,12 +102,14 @@ class App extends React.Component {
           })}>Reset</button>
           {/* <CountryList countryList={this.state.countryList} /> */}
         </div>
-        {/* <div className="App-body"> */}
+        <div className="App-body">
          
             {/* <LineChart data={{"2011235-13": 2, "2017-05-14": 5}} /> */}
             {/* <LineChart data={this.state.data} />
           */}
-        {/* </div> */}
+            <MyMapComponent />
+
+        </div>
       </div>
     );
   }
@@ -158,28 +163,21 @@ class SearchBar extends React.Component {
   }
 }
 
-// props: this.props.current_countries
-// class CountryList extends React.Component {
+// class Map extends React.Component {
 //   render() {
-//     const countryList = this.props.countryList.map((country, index) =>
-//       <li key={index}>{country}</li>
-//     )
-//     return(
+//     const MyMapComponent = (props) =>
+//       <GoogleMap
+//         defaultZoom={8}
+//         defaultCenter={{ lat: -34.397, lng: 150.644 }}
+//       >
+//         {props.isMarkerShown && <Marker position={{ lat: -34.397, lng: 150.644 }} />}
+//       </GoogleMap>
+//     return (
 //       <div>
-//         {/* {countryList} */}
-//         {/* This is country list */}
+//         <MyMapComponent isMarkerShown={false} />// Just only Map
 //       </div>
 //     )
 //   }
 // }
-
-// Country: "US"
-// Province: ""
-// Lat: 0
-// Lon: 0
-// Date: "2020-01-22T00:00:00Z"
-// Cases: 1
-// Status: "confirmed"
-
 
 export default App;
