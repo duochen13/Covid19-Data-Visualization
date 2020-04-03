@@ -10,7 +10,7 @@ import './App.css';
 // var FontAwesome = require('react-fontawesome')
 import { LineChart } from 'react-chartkick'
 import 'chart.js'
-// import MyMapComponent from './Map'
+import  {MyMapComponent } from './Map'
 // import { google } from 'google-maps';
 
 // const google=window.google
