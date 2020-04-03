@@ -10,28 +10,28 @@ import * as parkData from "./data/skateboard-parks.json";
 import mapStyles from "./mapStyles";
 
 function Map() {
-  const [selectedPark, setSelectedPark] = useState(null);
+  // const [selectedPark, setSelectedPark] = useState(null);
 
-  useEffect(() => {
-    const listener = e => {
-      if (e.key === "Escape") {
-        setSelectedPark(null);
-      }
-    };
-    window.addEventListener("keydown", listener);
+  // useEffect(() => {
+  //   const listener = e => {
+  //     if (e.key === "Escape") {
+  //       setSelectedPark(null);
+  //     }
+  //   };
+  //   window.addEventListener("keydown", listener);
 
-    return () => {
-      window.removeEventListener("keydown", listener);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener("keydown", listener);
+  //   };
+  // }, []);
 
   return (
     <GoogleMap
       defaultZoom={10}
-      defaultCenter={{ lat: 45.4211, lng: -75.6903 }}
+      defaultCenter={{ lat: 42.280827, lng: -83.743034 }}
       defaultOptions={{ styles: mapStyles }}
     >
-      {parkData.features.map(park => (
+      {/* {parkData.features.map(park => (
         <Marker
           key={park.properties.PARK_ID}
           position={{
@@ -46,9 +46,9 @@ function Map() {
             scaledSize: new window.google.maps.Size(25, 25)
           }}
         />
-      ))}
+      ))} */}
 
-      {selectedPark && (
+      {/* {selectedPark && (
         <InfoWindow
           onCloseClick={() => {
             setSelectedPark(null);
@@ -63,7 +63,7 @@ function Map() {
             <p>{selectedPark.properties.DESCRIPTIO}</p>
           </div>
         </InfoWindow>
-      )}
+      )} */}
     </GoogleMap>
   );
 }
@@ -87,17 +87,5 @@ class MyMapComponent extends React.Component {
     }
 }
 
-// export default function App() {
-//   return (
-//     <div style={{ width: "100vw", height: "100vh" }}>
-//       <MapWrapped
-//         googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${
-//           process.env.REACT_APP_GOOGLE_KEY
-//         }`}
-//         loadingElement={<div style={{ height: `100%` }} />}
-//         containerElement={<div style={{ height: `100%` }} />}
-//         mapElement={<div style={{ height: `100%` }} />}
-//       />
-//     </div>
-//   );
-// }
+export default MyMapComponent;
+

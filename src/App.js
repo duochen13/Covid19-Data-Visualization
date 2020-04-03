@@ -10,7 +10,7 @@ import './App.css';
 // var FontAwesome = require('react-fontawesome')
 import { LineChart } from 'react-chartkick'
 import 'chart.js'
-import  {MyMapComponent } from './Map'
+import  MyMapComponent from './Map.js'
 // import { google } from 'google-maps';
 
 // const google=window.google
@@ -21,9 +21,9 @@ class App extends React.Component {
     super(props);
     this.state = {
       country_names: [],
-      headerTitle: 'China', // 
+      headerTitle: 'Singapore', // 
       // data: {},
-      countryList: ['China'], //
+      countryList: ['Singapore'], //
       dataList: [] //
     }
     this.changeCountry = this.changeCountry.bind(this)
@@ -108,7 +108,7 @@ class App extends React.Component {
             {/* <LineChart data={{"2011235-13": 2, "2017-05-14": 5}} /> */}
             {/* <LineChart data={this.state.data} />
           */}
-            {/* <MyMapComponent /> */}
+            <MyMapComponent />
 
         </div>
       </div>
@@ -150,7 +150,7 @@ class SearchBar extends React.Component {
     <div>
       <div className="dd-wrapper">
         <div className="dd-header" onClick={() => this.toggleList()}>
-              <div className="dd-header-title">{headerTitle}</div>
+              <div className="dd-header-title">Click to select countries</div>
         </div>
         {listOpen && <ul className="dd-list">
             {list.map((item, index) => (
