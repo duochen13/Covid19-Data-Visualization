@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react";
+// import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   withGoogleMap,
   withScriptjs,
   GoogleMap,
-  Marker,
-  InfoWindow
+  // Marker,
+  // InfoWindow
 } from "react-google-maps";
-import * as parkData from "./data/skateboard-parks.json";
+// import * as parkData from "./data/skateboard-parks.json";
 import mapStyles from "./mapStyles";
 
 function Map() {

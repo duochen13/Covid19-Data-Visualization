@@ -143,7 +143,8 @@ class SearchBar extends React.Component {
     })
   }
   render() {
-    const{list, headerTitle} = this.props
+    // const{list, headerTitle} = this.props
+    const {list} = this.props
     const{listOpen} = this.state
     
     return (
