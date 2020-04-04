@@ -139,7 +139,7 @@ p {
   text-overflow: ellipsis;
 }
 .dd-list-item.selected {
-  color: #fff;
+  color: white;
   background-color: green
 }
 .dd-list-item:hover {
