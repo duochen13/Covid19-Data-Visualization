@@ -21,7 +21,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      country_names: [],
+      countries: [],
       headerTitle: 'Singapore', // 
       // data: {},
       countryList: ['Singapore'], //
@@ -85,23 +85,32 @@ class App extends React.Component {
         // get all countries
         data.Countries.forEach((country) => {
           this.setState((prevState) => ({
-            country_names: [...prevState.country_names, country.Country]
+            // country_names: [...prevState.country_names, country.Country]
+            countries: [...prevState.countries, 
+              {Country:country.Country, countryTotalConfirmed:country.countryTotalConfirmed}
+            ]
           }))
         })
       }, (err) => {
         console.log("err: ", err)
       })
+     // sort country names based on confirmed cases
     this.fetchConfirmedCases(this.state.headerTitle)
   }
   render() {
-    
+
+    const country_names = this.state.countries.map((country) => {
+      return country.Country
+    })
+
+
     return (
       <div className="App">
        
         <MyMapComponent />
 
         <div id="App-searchbar">
-          <SearchBar list={this.state.country_names}
+          <SearchBar list={country_names} //
             headerTitle={this.state.headerTitle}
             changeCountry={this.changeCountry}
             clickReset={this.clickReset} />
