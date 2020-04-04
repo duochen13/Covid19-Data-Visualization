@@ -4,7 +4,7 @@
 A React app that displays the latest real-time covid-19 confirmed cases data among different countries.
 [click to see](https://master.d1mut6kvig0du1.amplifyapp.com/)
 
-![GitHub Logo](./demo_final.png)
+![GitHub Logo](./demo_v1.png)
 
 ## Available Scripts
 
