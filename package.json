@@ -1,5 +1,5 @@
 {
-  "name": "gmaps-demo",
+  "name": "covid19-realtime-stats",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
