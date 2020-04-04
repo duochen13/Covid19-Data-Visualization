@@ -1,5 +1,6 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
+  position: relative;
   background-color: #282c34;
 }
 
@@ -12,6 +13,13 @@
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
+}
+
+.App #App-map {
+  position: absolute;
+  height: 100%;
+  width: 80%;
+  right: 0px;
 }
 
 .App-graph {

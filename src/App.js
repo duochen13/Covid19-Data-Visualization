@@ -88,9 +88,14 @@ class App extends React.Component {
     
     return (
       <div className="App">
-        <div className="App-graph">
+        {/* <div className="App-graph">
           <LineChart data={this.state.dataList} />
-        </div>
+        </div> */}
+       
+        <MyMapComponent />
+ 
+  
+        <LineChart data={this.state.dataList} />
         <div className="App-searchbar">
           <p><strong>{this.state.headerTitle}</strong> Covid-19 Confirmed Cases ~ Date</p>
           <SearchBar list={this.state.country_names}
@@ -108,7 +113,7 @@ class App extends React.Component {
             {/* <LineChart data={{"2011235-13": 2, "2017-05-14": 5}} /> */}
             {/* <LineChart data={this.state.data} />
           */}
-            <MyMapComponent />
+            {/* <MyMapComponent /> */}
 
         </div>
       </div>
