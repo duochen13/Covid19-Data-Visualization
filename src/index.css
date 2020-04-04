@@ -76,7 +76,7 @@ p {
       -ms-user-select: none;
           user-select: none;
   position: relative;
-  width: 360px;
+  width: 260px;
 }
 .dd-header {
   /* display: -webkit-box;

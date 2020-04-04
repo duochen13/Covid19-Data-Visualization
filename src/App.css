@@ -1,6 +1,7 @@
 .App {
   /* text-align: center; */
   position: relative;
+  height: 100vh;
   background-color: #282c34;
 }
 
@@ -17,39 +18,33 @@
 
 .App #App-map {
   position: absolute;
-  height: 100%;
-  width: 80%;
+  height: 62%;
+  width: 75%;
   right: 0px;
+  z-index: 0
 }
 
-.App-graph {
-  background-color: #282c34;
-  position: relative;
-  top:100px;
-  left:180px;
-  right:150px;
-  width:70%;
-  color: white
-}
-
-.App-searchbar{
+.App #App-searchbar{
   background-color: #282c34;
   /* opacity: 0.9; */
-  margin-top: -300px;
-  min-height: 113vh;
+  /* min-height: 113vh; */
+  position: absolute;
+  top:20px;
+  left:20px;
+  /* margin-top: -300px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: center; */
+  /* font-size: calc(8px + 2vmin); */
   color: white;
 }
 
-.App-searchbar :hover{
+.App #App-searchbar :hover{
   color: greenyellow;
 }
 
-.App-searchbar button {
+.App #App-searchbar button {
   position: relative;
   top: 20px;
   height: 40px;
@@ -57,24 +52,28 @@
   background-color: #282c34;
   border-radius: 5px;
 }
-.App-searchbar button:hover {
+.App #App-searchbar button:hover {
   color: #282c34;
   background-color: white;
 }
+
+.App #App-chart {
+  background-color: #282c34;
+  position: absolute;
+  bottom: 5px;
+  /* left:20px; */
+  right: 10px;
+  /* right:150px; */
+  width:75%;
+  color: white
+}
+
+
 /* .App-searchbar p {
   position:relative;
   bottom: 200px;
 } */
 
-.App-body {
-  /* background-color:white; */
-  /* min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center; */
-  /* left: 100px; */
-}
 
 .App-link {
   color: #61dafb;
