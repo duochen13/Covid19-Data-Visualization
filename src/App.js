@@ -108,12 +108,10 @@ class App extends React.Component {
        
         <MyMapComponent />
 
-        <div id="App-searchbar">
-          <SearchBar list={country_names} //
-            headerTitle={this.state.headerTitle}
-            changeCountry={this.changeCountry}
-            clickReset={this.clickReset} />
-        </div>
+        <SearchBar list={country_names} //
+          headerTitle={this.state.headerTitle}
+          changeCountry={this.changeCountry}
+          clickReset={this.clickReset} />
 
         <div id="App-chart">
           <LineChart data={this.state.dataList} />
