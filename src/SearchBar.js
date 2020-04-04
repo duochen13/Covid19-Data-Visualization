@@ -1,6 +1,6 @@
 import React from 'react';
 
-// props: list, headerTitle, changeCountry, clickReset
+// props: list, countryList, headerTitle, changeCountry, clickReset
 class SearchBar extends React.Component {
     constructor(props) {
       super(props)
@@ -31,7 +31,7 @@ class SearchBar extends React.Component {
     }
     render() {
       // const{list, headerTitle} = this.props
-      const {list} = this.props
+      const {list} = this.props // country_names
       const{listOpen} = this.state
       
       return (
@@ -48,6 +48,10 @@ class SearchBar extends React.Component {
                 </ul>}
             </div>
             <button onClick={() => this.clickReset()} >Reset</button>
+            {/* <CountryItem /> */}
+            {this.props.countryList.map((item, index) => (
+                <button>{item}</button>
+            ))}
         </div>
       )
     }

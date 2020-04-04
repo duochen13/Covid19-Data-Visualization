@@ -8,14 +8,14 @@ import './App.css';
 // var CanvasJS = CanvasJSReact.CanvasJS;
 // var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 // var FontAwesome = require('react-fontawesome')
-import { LineChart } from 'react-chartkick'
-import 'chart.js'
-import  MyMapComponent from './Map.js'
-import SearchBar from './SearchBar.js'
+import { LineChart } from 'react-chartkick';
+import 'chart.js';
+import  MyMapComponent from './Map.js';
+import SearchBar from './SearchBar.js';
 // import { google } from 'google-maps';
 
 // const google=window.google
-
+// https://api.covid19api.com/live/country/US/status/confirmed
 
 class App extends React.Component {
   constructor(props) {
@@ -109,6 +109,7 @@ class App extends React.Component {
         <MyMapComponent />
 
         <SearchBar list={country_names} //
+          countryList={this.state.countryList}
           headerTitle={this.state.headerTitle}
           changeCountry={this.changeCountry}
           clickReset={this.clickReset} />
