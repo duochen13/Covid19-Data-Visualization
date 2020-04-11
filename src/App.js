@@ -22,9 +22,9 @@ class App extends React.Component {
     super(props);
     this.state = {
       countries: [],
-      headerTitle: 'Singapore', // 
+      headerTitle: 'US', // 
       // data: {},
-      countryList: ['Singapore'], //
+      countryList: ['US'], //
       dataList: [] //
     }
     this.changeCountry = this.changeCountry.bind(this)

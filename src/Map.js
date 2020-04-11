@@ -4,11 +4,17 @@ import {
   withGoogleMap,
   withScriptjs,
   GoogleMap,
+  InfoWindow,
+  Marker
   // Marker,
   // InfoWindow
 } from "react-google-maps";
+import Geocode from "react-geocode";j
 // import * as parkData from "./data/skateboard-parks.json";
 import mapStyles from "./mapStyles";
+
+Geocode.setApiKey(process.env.REACT_APP_GOOGLE_KEY);
+Geoocode.enableDebug();
 
 function Map() {
   // const [selectedPark, setSelectedPark] = useState(null);
@@ -72,12 +78,30 @@ function Map() {
 const MapWrapped = withScriptjs(withGoogleMap(Map));
 
 class MyMapComponent extends React.Component {
+    constructor(props) {
+      super(props)
+      this.state = {
+        address: '',
+        city: '',
+        area: '',
+        state: '',
+      }
+      mapPosition: {
+        lat: this.props.center.lat,
+        lng: this.props.center.lng
+      }
+    }
+
+    componentDidMount() {
+      Geocode.fromLatLng()
+    }
+
     render() {
         return (
         <div id="App-map">
             <MapWrapped
                 googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${
-                process.env.REACT_APP_GOOGLE_KEY
+                  process.env.REACT_APP_GOOGLE_KEY
                 }`}
                 loadingElement={<div style={{ height: `100%` }} />}
                 containerElement={<div style={{ height: `100%` }} />}
