@@ -8,11 +8,12 @@ import './App.css';
 // var CanvasJS = CanvasJSReact.CanvasJS;
 // var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 // var FontAwesome = require('react-fontawesome')
-import { LineChart } from 'react-chartkick';
+import { LineChart, Timeline, ColumnChart, AreaChart } from 'react-chartkick';
 import 'chart.js';
 import  MyMapComponent from './Map.js';
 import SearchBar from './SearchBar.js';
 import DetailedTable from './Table.js';
+// import { Chart } from "react-google-charts";
 // import { google } from 'google-maps';
 
 // const google=window.google
@@ -64,8 +65,8 @@ class App extends React.Component {
           window.location.reload(false);
           return
         }
-        console.log("country: ", country)
-        console.log("data: ", data)
+        // console.log("country: ", country)
+        // console.log("data: ", data)
         let newCountryData = {}
         data.forEach((daily_data) => {
           const { Cases, Date } = daily_data
@@ -106,13 +107,25 @@ class App extends React.Component {
     const country_names = this.state.countries.map((country) => {
       return country.Country
     })
+    // let geoData = this.state.countries.map((country, index) => {
+    //   return [country.Country, country.countryTotalConfirmed]
+    // })
+    // geoData = [["Country", "Confirmed Cases"], ...geoData]
 
-    let lineChartData = this.state.dataList;
-    lineChartData["yLabel"] = "Date"
-    console.log(lineChartData.yLabel)
     return (
       <div className="App">
        
+        {/* <GeoChart data={geoData} /> */}
+{/* 
+        <Chart
+          chartType="GeoChart"
+          data={geoData}
+          width="50%"
+          height="400px"
+          mapsApiKey={process.env.REACT_APP_GOOGLE_KEY}
+          rootProps={{ 'data-testid': '1' }}
+        /> */}
+
         <MyMapComponent />
 
         <SearchBar list={country_names} //
@@ -122,7 +135,7 @@ class App extends React.Component {
           clickReset={this.clickReset} />
 
         <div id="App-chart">
-          <LineChart data={lineChartData} />
+          <AreaChart data={this.state.dataList} yLabel="Confirmed Cases"/>
         </div>
 
         {/* <DetailedTable /> */}
