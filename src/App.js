@@ -23,9 +23,9 @@ class App extends React.Component {
     super(props);
     this.state = {
       countries: [],
-      headerTitle: 'US', // 
+      headerTitle: 'South Korea', // 
       // data: {},
-      countryList: ['US'], //
+      countryList: ['South Korea'], //
       dataList: [] //
     }
     this.changeCountry = this.changeCountry.bind(this)
@@ -99,6 +99,7 @@ class App extends React.Component {
       })
      // sort country names based on confirmed cases
     this.fetchConfirmedCases(this.state.headerTitle)
+    // add keys to state.obj
   }
   render() {
 
@@ -106,6 +107,9 @@ class App extends React.Component {
       return country.Country
     })
 
+    let lineChartData = this.state.dataList;
+    lineChartData["yLabel"] = "Date"
+    console.log(lineChartData.yLabel)
     return (
       <div className="App">
        
@@ -118,7 +122,7 @@ class App extends React.Component {
           clickReset={this.clickReset} />
 
         <div id="App-chart">
-          <LineChart data={this.state.dataList} />
+          <LineChart data={lineChartData} />
         </div>
 
         {/* <DetailedTable /> */}
