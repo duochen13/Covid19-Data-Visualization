@@ -12,6 +12,7 @@ import { LineChart } from 'react-chartkick';
 import 'chart.js';
 import  MyMapComponent from './Map.js';
 import SearchBar from './SearchBar.js';
+import DetailedTable from './Table.js';
 // import { google } from 'google-maps';
 
 // const google=window.google
@@ -52,6 +53,7 @@ class App extends React.Component {
   }
   fetchConfirmedCases(country) {
     // const country = this.state.headerTitle
+
     const url = `https://api.covid19api.com/total/country/${country}/status/confirmed`
     fetch(url)
       .then((res) => res.json())
@@ -62,7 +64,8 @@ class App extends React.Component {
           window.location.reload(false);
           return
         }
-
+        console.log("country: ", country)
+        console.log("data: ", data)
         let newCountryData = {}
         data.forEach((daily_data) => {
           const { Cases, Date } = daily_data
@@ -117,6 +120,8 @@ class App extends React.Component {
         <div id="App-chart">
           <LineChart data={this.state.dataList} />
         </div>
+
+        {/* <DetailedTable /> */}
 
       </div>
     );

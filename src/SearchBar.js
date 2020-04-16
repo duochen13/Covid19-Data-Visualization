@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactSearchBox from 'react-search-box'
 
 // props: list, countryList, headerTitle, changeCountry, clickReset
 class SearchBar extends React.Component {
@@ -25,6 +26,7 @@ class SearchBar extends React.Component {
         // headerTitle: item,
         listOpen: false
       })
+      
     }
     clickReset() {
         this.props.clickReset()
@@ -33,12 +35,15 @@ class SearchBar extends React.Component {
       // const{list, headerTitle} = this.props
       const {list} = this.props // country_names
       const{listOpen} = this.state
-      
+      const localdata = this.props.list.map((name, index) => {
+        return {key:index, value:name}
+      })
+      const serachBarText = listOpen ? "Click to close list" : "Click to select a country"
       return (
         <div id="App-searchbar">
             <div className="dd-wrapper">
             <div className="dd-header" onClick={() => this.toggleList()}>
-                    <div className="dd-header-title">Click to select countries</div>
+                    <div className="dd-header-title">{serachBarText}</div>
             </div>
             {listOpen && <ul className="dd-list">
                 {list.map((item, index) => (
@@ -46,12 +51,22 @@ class SearchBar extends React.Component {
                     onClick={() => this.changeCountry(item)}>{item}</li>
                     ))}
                 </ul>}
+            {/* <ReactSearchBox 
+              placeholder="Enter country name"
+              data={localdata}
+              value={this.props.headerTitle}
+              onSelect={item => this.changeCountry(item)}
+            /> */}
             </div>
-            <button onClick={() => this.clickReset()} >Reset</button>
-            {/* <CountryItem /> */}
-            {this.props.countryList.map((item, index) => (
+            {!listOpen && 
+              <button onClick={() => this.clickReset()} >Reset</button>
+            }
+            {!listOpen &&
+              this.props.countryList.map((item, index) => (
                 <button>{item}</button>
-            ))}
+              ))
+            }
+
         </div>
       )
     }

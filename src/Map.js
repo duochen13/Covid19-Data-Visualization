@@ -9,12 +9,12 @@ import {
   // Marker,
   // InfoWindow
 } from "react-google-maps";
-import Geocode from "react-geocode";j
+import Geocode from "react-geocode";
 // import * as parkData from "./data/skateboard-parks.json";
 import mapStyles from "./mapStyles";
 
-Geocode.setApiKey(process.env.REACT_APP_GOOGLE_KEY);
-Geoocode.enableDebug();
+// Geocode.setApiKey(process.env.REACT_APP_GOOGLE_KEY);
+// Geoocode.enableDebug();
 
 function Map() {
   // const [selectedPark, setSelectedPark] = useState(null);
@@ -87,14 +87,14 @@ class MyMapComponent extends React.Component {
         state: '',
       }
       mapPosition: {
-        lat: this.props.center.lat,
-        lng: this.props.center.lng
+        // lat: this.props.center.lat,
+        // lng: this.props.center.lng
       }
     }
 
-    componentDidMount() {
-      Geocode.fromLatLng()
-    }
+    // componentDidMount() {
+    //   Geocode.fromLatLng()
+    // }
 
     render() {
         return (

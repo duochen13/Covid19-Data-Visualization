@@ -57,6 +57,21 @@
   background-color: white;
 }
 
+.App #App-detailedtable {
+  position: absolute;
+  color: white;
+  left: 20px;
+  top: 130px;
+}
+
+.App #App-detailedtable table {
+  width: 100%;
+}
+
+.App #App-detailedtable th {
+  
+}
+
 .App #App-chart {
   background-color: #282c34;
   position: absolute;
