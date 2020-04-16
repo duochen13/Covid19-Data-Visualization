@@ -24,9 +24,9 @@ class App extends React.Component {
     super(props);
     this.state = {
       countries: [],
-      headerTitle: 'South Korea', // 
+      headerTitle: 'Singapore', // 
       // data: {},
-      countryList: ['South Korea'], //
+      countryList: ['Singapore'], //
       dataList: [] //
     }
     this.changeCountry = this.changeCountry.bind(this)
